@@ -40,13 +40,22 @@ class Products extends StatelessWidget {
                       alignment: Alignment(-1.0, -1.0),
                       child: Padding(
                         padding: const EdgeInsets.only(top: 15, bottom: 15),
-                        child: Text(
-                          product.name,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              fontWeight: FontWeight.w600),
-                        ),
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                product.name,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.w600),
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.favorite_outline),
+                                onPressed: () {},
+                              )
+                            ]),
                       ),
                     ),
                     Padding(

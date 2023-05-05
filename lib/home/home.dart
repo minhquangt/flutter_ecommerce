@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommerce_ui_kit/home/search_drawer.dart';
 import 'package:flutter_ecommerce_ui_kit/localizations.dart';
 import 'package:flutter_ecommerce_ui_kit/models/category.dart';
 import 'package:flutter_ecommerce_ui_kit/models/product.dart';
@@ -56,12 +57,15 @@ class _HomeState extends State<Home> {
         'Áo Polo kiểu dáng body fit, tôn dáng người mặc. Màu sắc trung tính, dễ phối đồ. Chất liệu: CVC Spandex'),
   ];
 
-  bool _isTextFieldVisible = false;
+  bool _isAppDrawerVisible = false;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       drawer: Drawer(
-        child: AppDrawer(),
+        key: Key('search_drawer'),
+        child: _isAppDrawerVisible ? AppDrawer() : SearchDrawer(),
       ),
       body: SafeArea(
         top: false,
@@ -74,10 +78,24 @@ class _HomeState extends State<Home> {
                 // Provide a standard title.
                 // title: Text('asdas'),
                 // pinned: true,
+                leading: IconButton(
+                  icon: Icon(Icons.menu),
+                  onPressed: () {
+                    setState(() {
+                      _isAppDrawerVisible = true;
+                      _scaffoldKey.currentState?.openDrawer();
+                    });
+                  },
+                ),
                 actions: <Widget>[
                   IconButton(
                     icon: Icon(Icons.search),
-                    onPressed: () {},
+                    onPressed: () {
+                      setState(() {
+                        _isAppDrawerVisible = false;
+                        _scaffoldKey.currentState?.openDrawer();
+                      });
+                    },
                   )
                 ],
                 // Allows the user to reveal the app bar if they begin scrolling

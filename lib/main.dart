@@ -38,7 +38,7 @@ void main() {
       routes: <String, WidgetBuilder>{
         '/': (BuildContext context) => Home(),
         '/auth': (BuildContext context) => Auth(),
-        '/shop': (BuildContext context) => Shop(),
+        '/shop': (BuildContext GlobalKeycontext) => Shop(),
         '/categorise': (BuildContext context) => Categorise(),
         '/wishlist': (BuildContext context) => WishList(),
         '/cart': (BuildContext context) => CartList(),
